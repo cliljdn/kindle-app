@@ -1,14 +1,14 @@
 const express = require('express')
 const app = express()
 const fs = require('fs')
-const path = require('path')
-const serveIndex = require('serve-index')
+const cors = require('cors')
 
 const readFile = (file) => {
      return fs.readFileSync(__dirname + `/books/` + file).toString()
 }
 
 app.use(express.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
      res.json({
@@ -28,7 +28,10 @@ app.get('/list/books', async (req, res, next) => {
 
 app.get('/book/:name', async (req, res, next) => {
      try {
-          res.status(200).json(readFile(req.params.name))
+          res.status(200).json({
+               title: req.params.name,
+               content: readFile(req.params.name),
+          })
      } catch (error) {
           next(error)
      }

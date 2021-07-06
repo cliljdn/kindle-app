@@ -26,6 +26,8 @@
      width: 80%;
      display: grid;
      grid-template-columns: 1fr;
+     height: 500px;
+     overflow-y: auto;
 }
 
 .modal-header {
@@ -51,5 +53,5 @@
 
 /* modal-body */
 
-.modal-body {
+.modal-props {
 }
